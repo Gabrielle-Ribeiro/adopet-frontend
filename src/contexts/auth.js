@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import React from "react";
-import jwt_decode from 'jsonwebtoken';
+import { jwtDecode } from "jwt-decode";
 
 const baseURL = 'http://localhost:3000/adotante'
 
@@ -65,7 +65,7 @@ export const AuthProvider = ({ children }) => {
         if (token){
             localStorage.setItem('token', token);
 
-            const decode = jwt_decode(token);
+            const decode = jwtDecode(token);
             // const user = decode(token);
             console.log(decode);
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -78,6 +78,7 @@ export const AuthProvider = ({ children }) => {
         }
     }catch(error){
         console.error('Erro ao autenticar', error.message);
+        throw error
     }
 }
                   

@@ -25,10 +25,15 @@ const LoginForm = () => {
 		reValidateMode: "onChange",
 	});
 
-	 const  onSubmit = (data) => {
-		console.log('submit', data);
-		login(data.email,data.password);
-		// navigate("/home");
+	 const  onSubmit = async (data) => {
+		try {
+			console.log('submit', data);
+			await login(data.email,data.password);
+			// navigate("/home");
+		}catch(error){
+			console.error('Erro Login', error);
+		}
+		
 	};
 
 	let element = "";
