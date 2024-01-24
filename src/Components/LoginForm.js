@@ -10,6 +10,7 @@ import Button from "./Button.js";
 // contexts
 import { AuthContext } from "../contexts/auth.js";
 
+
 const LoginForm = () => {
 	// destructuring AuthContext
 	const { login } = useContext(AuthContext);
@@ -24,9 +25,9 @@ const LoginForm = () => {
 		reValidateMode: "onChange",
 	});
 
-	const onSubmit = (data) => {
+	 const  onSubmit = (data) => {
 		console.log('submit', data);
-		login(data.email, data.password, data.token);
+		login(data.email,data.password);
 		// navigate("/home");
 	};
 

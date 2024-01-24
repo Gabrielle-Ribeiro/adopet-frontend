@@ -12,7 +12,6 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    // Num primeiro momento, usaremos dados fixos para o login/logout
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -23,39 +22,63 @@ export const AuthProvider = ({ children }) => {
             setUser(JSON.parse(recoveredUser));
         }
 
-        // to avoid page loading without properly gathering the user info from localStorage, we must use a state to wait for it. When the data fetch is ended, then we set Loading to false and then we render the page (this last one is made on Routes file)
-        setLoading(false);
+          setLoading(false);
     }, []);
 
     const login = async (email, password) => {
-        await axios.post(baseURL+'/login',{email, password},
-       { method: "POST"},
-        // {
-        //     headers: { 'Content-Type': 'application/json' },
-        //     withCredentials: true
-        // },
-         )
-        .then(response => {
-            const token = response.data.access_token;
-            // console.log(JSON.stringify(response?.data));
-            if(token){
-                localStorage.setItem('token', token);
+    //     axios.post(baseURL+'/login',{email, password},
+    //    { method: "POST"},
+    //     // {
+    //     //     headers: { 'Content-Type': 'application/json' },
+    //     //     withCredentials: true
+    //     // },
+    //      )
+    //     .then(response => {
+    //         const token = response.data.access_token;
+    //         // console.log(JSON.stringify(response?.data));
+    //         if(token){
+    //             localStorage.setItem('token', token);
 
-                const decode = jwt_decode(token);
-                console.log(decode);
-                axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    //             const decode = jwt_decode(token);
+    //             console.log(decode);
+    //             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
                 
-                setUser(decode);
-                navigate('/home');
+    //             setUser(decode);
+    //             navigate('/home');
 
-            }else {
-                console.error("Verifique suas credenciais. Erro ao autenticar");
-            }
+    //         }else {
+    //             console.error("Verifique suas credenciais. Erro ao autenticar");
+    //         }
         
-    })
-    .catch(error => {
-        console.error("Erro na autenticação", error.message);
-    });
+    // })
+    // .catch(error => {
+    //     console.error("Erro na autenticação", error.message);
+    // });
+
+    try {
+        const response = await axios.post(baseURL+'/login', { email, password})
+        const token = response.data.token;
+        console.log(token);
+        console.log('chegou aqui');
+        // console.log('login auth', { email:email, password:password });
+
+        if (token){
+            localStorage.setItem('token', token);
+
+            const decode = jwt_decode(token);
+            // const user = decode(token);
+            console.log(decode);
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            setUser(decode);
+            navigate('/home');
+            console.log('entrou no if');
+
+        }else {
+            console.error("Erro. Verifique suas credenciais");
+        }
+    }catch(error){
+        console.error('Erro ao autenticar', error.message);
+    }
 }
                   
 
