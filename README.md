@@ -36,12 +36,7 @@ Você pode saber um pouco mais como funcionam os _challenges_ da Alura visitando
 
 ### ⚙️ Como usar
 
--   Acesse o site: https://adopet-tau.vercel.app/
--   Para fazer o login na página, utilize os seguintes dados:
 
-    > E-mail: admin@email.com
-    >
-    > Senha: 12345aA
 
 <div id="howto">
 
