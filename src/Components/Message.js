@@ -2,7 +2,7 @@
 import Button from './Button';
 
 // dependencies
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
 
@@ -13,6 +13,7 @@ const baseURL ='http://localhost:3000/mensagem'
 
 const Message = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   // destructuring useForm
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onBlur',
@@ -21,11 +22,13 @@ const Message = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
+  
 
     try {
       const response = await axios.post(baseURL, data);
       console.log(response.data);
       alert('Mensagem enviada!');
+      navigate('/home');
     }catch(error){
       console.error('Erro ao enviar mensagem', error);
       alert('Falha ao enviar mensagem')

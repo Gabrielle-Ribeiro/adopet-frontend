@@ -26,36 +26,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     const login = async (email, password) => {
-    //     axios.post(baseURL+'/login',{email, password},
-    //    { method: "POST"},
-    //     // {
-    //     //     headers: { 'Content-Type': 'application/json' },
-    //     //     withCredentials: true
-    //     // },
-    //      )
-    //     .then(response => {
-    //         const token = response.data.access_token;
-    //         // console.log(JSON.stringify(response?.data));
-    //         if(token){
-    //             localStorage.setItem('token', token);
-
-    //             const decode = jwt_decode(token);
-    //             console.log(decode);
-    //             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-                
-    //             setUser(decode);
-    //             navigate('/home');
-
-    //         }else {
-    //             console.error("Verifique suas credenciais. Erro ao autenticar");
-    //         }
-        
-    // })
-    // .catch(error => {
-    //     console.error("Erro na autenticação", error.message);
-    // });
-
-    try {
+      try {
         const response = await axios.post(baseURL+'/login', { email, password})
         const token = response.data.token;
         console.log(token);
