@@ -52,12 +52,13 @@ const RegisterForm = () => {
 				const response = await axios.post(baseURL+'/register', {nome: requestData.nome, email: requestData.email, password: requestData.password })
 		// Handle the registration response
 		console.log(response.data);
+		alert('Cadastro feito com sucesso!')
 		navigate('/login');
-		// alert('Registration successful');
-			
+					
 		} catch (error) {
+		alert('Falha no Cadastro!');
 		console.error(error);
-		// alert('Registration failed');
+		// 
 		};
 
 	

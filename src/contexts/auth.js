@@ -74,9 +74,11 @@ export const AuthProvider = ({ children }) => {
             console.log('entrou no if');
 
         }else {
+            alert('Consulte suas credenciais')
             console.error("Erro. Verifique suas credenciais");
         }
     }catch(error){
+        alert('Falha no Login, consulte suas credenciais')
         console.error('Erro ao autenticar', error.message);
         throw error
     }
@@ -120,3 +122,5 @@ export const AuthProvider = ({ children }) => {
 O contexto é como se fosse uma memória central disponível para gravar certas informações globais, por exemplo, um usuário logado.
 Esse contexto deverá ser importado no arquivo de rotas e deve envolver todas as rotas que precisam ter acesso aos dados desse contexto. Usaremos o localStorage para armazenar os dados.
 */
+
+//plano de aula e deploy

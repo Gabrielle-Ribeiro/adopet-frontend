@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 
 // assets
 import loggedUser from '../assets/logged-user.png';
+import axios from 'axios';
+const baseURL ='http://localhost:3000/mensagem'
 
 const Message = () => {
   const location = useLocation();
@@ -17,8 +19,17 @@ const Message = () => {
     reValidateMode: 'onChange'
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+
+    try {
+      const response = await axios.post(baseURL, data);
+      console.log(response.data);
+      alert('Mensagem enviada!');
+    }catch(error){
+      console.error('Erro ao enviar mensagem', error);
+      alert('Falha ao enviar mensagem')
+    }
   };
 
   return (
