@@ -88,10 +88,3 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
-
-/*
-O contexto é como se fosse uma memória central disponível para gravar certas informações globais, por exemplo, um usuário logado.
-Esse contexto deverá ser importado no arquivo de rotas e deve envolver todas as rotas que precisam ter acesso aos dados desse contexto. Usaremos o localStorage para armazenar os dados.
-*/
-
-//plano de aula e deploy

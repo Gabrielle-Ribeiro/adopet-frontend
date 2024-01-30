@@ -14,6 +14,7 @@ import Message from "./Message.js";
 import RegisterForm from "./RegisterForm.js";
 import Header from "./Header";
 import Footer from "./Footer";
+import Profile from "./Profile.js";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -45,7 +46,7 @@ const AnimatedRoutes = () => {
           <Route path='/cadastro' element={<RegisterForm />} />
           <Route path='/home' element={<Home />} />
           <Route path='/mensagem' element={<Private><Message /></Private>} />
-          <Route path='/perfil' element={<Private><Message /></Private>} />
+          <Route path='/perfil' element={<Private><Profile /></Private>} />
         </Routes>
         <Footer />
       </AuthProvider>
