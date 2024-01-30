@@ -5,7 +5,8 @@ import Button from './Button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
-
+import { useEffect } from 'react';
+import { useState } from 'react';
 // assets
 import loggedUser from '../assets/logged-user.png';
 import axios from 'axios';
@@ -16,8 +17,29 @@ const baseURL = 'http://localhost:3000/mensagem'
 const Message = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { authenticated } = useContext(AuthContext)
+  const { authenticated, user } = useContext(AuthContext)
+  const [userMessages, setUserMessages] = useState([]);
 
+  useEffect(() => {
+    const fetchUserMessages = async () => {
+      try {
+        if(authenticated){
+        const response = await axios.get(`${baseURL}/${user.sub}`);
+        //  setUserMessages(prevData => ({ ...prevData, ...response.data }));
+setUserMessages(response.data.msg)
+      console.log(response.data.msg)}
+      } catch (error) {
+        console.error('Erro ao obter mensagens do usuário', error);
+        setUserMessages([]);
+      }
+    };
+
+       fetchUserMessages();
+    
+  }, [authenticated, user.sub, setUserMessages]);
+
+  
+  
   // destructuring useForm
   const { register, handleSubmit, formState: { errors } } = useForm({
     mode: 'onBlur',
@@ -69,7 +91,19 @@ const Message = () => {
 
               <Button type='submit' children='Enviar' />
             </form>
-          </>
+
+          {/* Display messages specific to the authenticated user */}
+          <div className='enviadas'>
+          <p>Mensagens enviadas</p>
+            <ul className='enviadas'>
+              {userMessages !== null && userMessages.map((message, index) => (
+                <li key={index}>
+                  <strong>{message.name}</strong>: {message.msg}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
         ): null}
       </motion.section>
   );

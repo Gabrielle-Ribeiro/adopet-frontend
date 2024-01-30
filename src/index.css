@@ -842,6 +842,24 @@ legend {
   }
   */
 
+  .enviadas{
+    width: 34.5rem;
+    padding: 2rem;
+    margin-bottom: 5.625rem;
+        
+    background: var(--light-grey);
+        padding: 2rem 1rem;
+        border-radius: 0.625rem;
+        margin-bottom: 1rem;
+  
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        background-color: var(--white);
+
+       
+  
+  }
+
     .message form {
         width: 34.5rem;
         padding: 2rem;
