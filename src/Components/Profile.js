@@ -14,7 +14,13 @@ import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
-const baseURL = 'http://localhost:3000/adotante'
+
+
+import axiosClient from '../axios.config'
+
+const baseURL = axiosClient 
+
+// const baseURL = 'http://localhost:3000/adotante'
 
 const Profile = () => {
     const location = useLocation();
@@ -36,7 +42,7 @@ const Profile = () => {
             if(authenticated){
                 console.log(user.sub);
                 // Faz uma solicitação GET para obter as informações do perfil do servidor
-                const response = await axios.get(`${baseURL}/perfil/${user.sub}`);
+                const response = await axios.get(`${baseURL}/adotante/perfil/${user.sub}`);
                 setProfileData(prevData => ({ ...prevData, ...response.data }));
                 console.log(response.data);
             }
@@ -54,7 +60,7 @@ const Profile = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.patch(`${baseURL}/perfil/${user.sub}`, data);
+            const response = await axios.patch(`${baseURL}/adotante/perfil/${user.sub}`, data);
             // setProfileImage(response.data.fotoPerfil)
             console.log(response.data);
             alert('Atualização concluída!');

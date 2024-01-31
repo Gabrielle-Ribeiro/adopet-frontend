@@ -5,7 +5,11 @@ import axios from "axios";
 import React from "react";
 import { jwtDecode } from "jwt-decode";
 
-const baseURL = 'http://localhost:3000/adotante'
+import axiosClient from '../axios.config'
+
+const baseURL = axiosClient 
+
+// 'http://localhost:3000/adotante'
 
 export const AuthContext = createContext();
 
@@ -27,22 +31,20 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
       try {
-        const response = await axios.post(baseURL+'/login', { email, password})
+        const response = await axios.post(`${baseURL}/adotante/login`, { email, password})
         const token = response.data.token;
-        console.log(token);
-        console.log('chegou aqui');
-        // console.log('login auth', { email:email, password:password });
+          // console.log('login auth', { email:email, password:password });
 
         if (token){
             localStorage.setItem('token', token);
 
             const decode = jwtDecode(token);
             // const user = decode(token);
-            console.log(decode);
+            // console.log(decode);
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
             setUser(decode);
             navigate('/home');
-            console.log('entrou no if');
+            // console.log('entrou no if');
 
         }else {
             alert('Consulte suas credenciais')
@@ -55,21 +57,7 @@ export const AuthProvider = ({ children }) => {
     }
 }
                   
-
-        // // creating a session api
-        // const loggedUser = {
-        //     id: '123',
-        //     email
-        // };
-
-        // // saving user on localStorage
-        // localStorage.setItem('user', JSON.stringify(loggedUser));
-
-        // if (password === '12345aA') {
-        //     setUser(loggedUser);
-        //     navigate('/home');
-        // }
-    
+   
 
     const logout = () => {
         console.log('logout');
@@ -78,11 +66,7 @@ export const AuthProvider = ({ children }) => {
         navigate('/');
     };
 
-    // !!user:
-    // user != null, then authenticated = true
-    // user == null, then authenticated = false
-
-    return (
+     return (
         <AuthContext.Provider value={{ authenticated: !!user, user, loading, login, logout }}>
             {children}
         </AuthContext.Provider>

@@ -9,7 +9,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-const baseURL = 'http://localhost:3000/adotante'
+
+import axiosClient from '../axios.config'
+
+const baseURL = axiosClient 
+
+// const baseURL = 'http://localhost:3000/adotante'
 
 
 const RegisterForm = () => {
@@ -49,7 +54,7 @@ const RegisterForm = () => {
 				...data,
 				// salt: process.env.REACT_APP_SALT,
 			}
-				const response = await axios.post(baseURL+'/register', {nome: requestData.nome, email: requestData.email, password: requestData.password })
+				const response = await axios.post(`${baseURL}/adotante/register`, {nome: requestData.nome, email: requestData.email, password: requestData.password })
 		// Handle the registration response
 		console.log(response.data);
 		alert('Cadastro feito com sucesso!')

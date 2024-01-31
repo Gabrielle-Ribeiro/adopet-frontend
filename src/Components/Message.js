@@ -12,7 +12,12 @@ import loggedUser from '../assets/logged-user.png';
 import axios from 'axios';
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth';
-const baseURL = 'http://localhost:3000/mensagem'
+
+import axiosClient from '../axios.config'
+
+const baseURL = axiosClient 
+
+// const baseURL = 'http://localhost:3000/mensagem'
 
 const Message = () => {
   const location = useLocation();
@@ -24,9 +29,9 @@ const Message = () => {
     const fetchUserMessages = async () => {
       try {
         if(authenticated){
-        const response = await axios.get(`${baseURL}/${user.sub}`);
-        //  setUserMessages(prevData => ({ ...prevData, ...response.data }));
-setUserMessages(response.data.msg)
+        const response = await axios.get(`${baseURL}/mensagem/${user.sub}`);
+        
+      setUserMessages(response.data.msg)
       console.log(response.data.msg)}
       } catch (error) {
         console.error('Erro ao obter mensagens do usuário', error);
