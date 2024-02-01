@@ -5,9 +5,9 @@ import axios from "axios";
 import React from "react";
 import { jwtDecode } from "jwt-decode";
 
-import axiosClient from '../axios.config'
+import client from '../axios.config'
 
-const baseURL = axiosClient 
+
 
 // 'http://localhost:3000/adotante'
 
@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password) => {
       try {
-        const response = await axios.post(`${baseURL}/adotante/login`, { email, password})
+        const response = await client.post(`/adotante/login`, { email, password})
         const token = response.data.token;
           // console.log('login auth', { email:email, password:password });
 

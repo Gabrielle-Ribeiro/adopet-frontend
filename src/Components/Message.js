@@ -9,13 +9,12 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 // assets
 import loggedUser from '../assets/logged-user.png';
-import axios from 'axios';
+
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth';
 
-import axiosClient from '../axios.config'
+import client from '../axios.config'
 
-const baseURL = axiosClient 
 
 // const baseURL = 'http://localhost:3000/mensagem'
 
@@ -29,7 +28,7 @@ const Message = () => {
     const fetchUserMessages = async () => {
       try {
         if(authenticated){
-        const response = await axios.get(`${baseURL}/mensagem/${user.sub}`);
+        const response = await client.get(`/mensagem/${user.sub}`);
         
       setUserMessages(response.data.msg)
       console.log(response.data.msg)}
@@ -61,7 +60,7 @@ const Message = () => {
 
 
     try {
-      const response = await axios.post(baseURL, data);
+      const response = await client.post('/adotante', data);
       console.log(response.data);
       alert('Mensagem enviada!');
       navigate('/home');

@@ -2,7 +2,7 @@
   "name": "adopet",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/adotante",
+  
   "dependencies": {
     "@headlessui/react": "^1.6.6",
     "axios": "^1.6.5",

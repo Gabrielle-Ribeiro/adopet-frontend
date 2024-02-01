@@ -9,16 +9,16 @@ import { useForm } from "react-hook-form";
 
 // assets
 // import loggedUser from '../assets/logged-user.png';
-import axios from 'axios';
+
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 
-import axiosClient from '../axios.config'
+import client from '../axios.config'
 
-const baseURL = axiosClient 
+
 
 // const baseURL = 'http://localhost:3000/adotante'
 
@@ -42,7 +42,7 @@ const Profile = () => {
             if(authenticated){
                 console.log(user.sub);
                 // Faz uma solicitação GET para obter as informações do perfil do servidor
-                const response = await axios.get(`${baseURL}/adotante/perfil/${user.sub}`);
+                const response = await client.get(`/adotante/perfil/${user.sub}`);
                 setProfileData(prevData => ({ ...prevData, ...response.data }));
                 console.log(response.data);
             }
@@ -60,7 +60,7 @@ const Profile = () => {
 
     const onSubmit = async (data) => {
         try {
-            const response = await axios.patch(`${baseURL}/adotante/perfil/${user.sub}`, data);
+            const response = await client.patch(`/adotante/perfil/${user.sub}`, data);
             // setProfileImage(response.data.fotoPerfil)
             console.log(response.data);
             alert('Atualização concluída!');
