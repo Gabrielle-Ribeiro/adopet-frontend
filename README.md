@@ -4,13 +4,18 @@
 
 </div>
 
-_[Read it in English](#English)_
 
-Olá, devs!
+Olá!
 
 A **AdoPet** é uma empresa fictícia que funciona como intermediária entre adotantes de pets e ONGs com foco em retirar animais das ruas. A proposta da AdoPet é trazer mais usuários e aumentar a interação entre possíveis adotantes e representantes dessas ONGs e para isso, o objetivo do projeto é implementar uma plataforma e levar a empresa pro mundo digital.
 
-Este projeto foi desenvolvido como resultado de um Desafio Front-End (4ª edição) exclusivo para alunos da escola de tecnologia [Alura](https://www.alura.com.br). Foi meu primeiro projeto desenvolvido em React como forma de praticar os conceitos mais básicos da biblioteca. Além disso, aproveitei para tentar aplicar algumas bibliotecas conhecidas desde o início, como o React Hook Form na validação dos formulários, o Framer Motion para a animação das transições de tela e o Headless UI para a criação do menu do cabeçalho. Uma refatoração do código será necessária futuramente após a evolução dos meus estudos.
+A base deste projeto foi desenvolvido como resultado de um Desafio Front-End (4ª edição) exclusivo para alunos da escola de tecnologia [Alura](https://www.alura.com.br).
+
+O projeto foi desenvolvido em React pela aluna e desenvolvedora  [Angela Caldas @sucodelarangela 🍊](https://angelacaldas.vercel.app), que gentilmente cedeu sua versão para fins de ensino e aprendizado em cursos da plataforma.
+
+A versão foi refatorada para atender às necessidades do curso e trabalhar com Back-End em Nest.js.
+
+O projeto possui a biblioteca React, React Hook Form na validação dos formulários, o Framer Motion para a animação das transições de tela e o Headless UI para a criação do menu do cabeçalho.
 
 Você pode saber um pouco mais como funcionam os _challenges_ da Alura visitando a seção [**🦾 Sobre o desafio**](#challenge).
 
@@ -18,7 +23,7 @@ Você pode saber um pouco mais como funcionam os _challenges_ da Alura visitando
 | -------------- | --- |
 | ✨ Nome        | **Adopet** - Challenge Alura |
 | 🏷️ Tecnologias | React, Headless-ui, React Hook Form, Framer Motion, CSS, JavaScript |
-| 🚀 URL         | [**Acesse o site**](https://adopet-tau.vercel.app/). Veja os dados de login no item [**⚙️ Como usar**](#howto) |
+| 🚀 URL         | [**Acesse o site**](https://adopet-frontend-iota.vercel.app/). Veja os dados de login no item [**⚙️ Como usar**](#howto) |
 | 🔥 Desafio     | [**Protótipo do Figma**](https://www.figma.com/file/TlfkDoIu8uyjZNla1T8TpH/Challenge---Adopet)                 |
 
 ![](https://raw.githubusercontent.com/sucodelarangela/adopet/main/public/og-image.png#vitrinedev)
@@ -36,7 +41,10 @@ Você pode saber um pouco mais como funcionam os _challenges_ da Alura visitando
 
 ### ⚙️ Como usar
 
+Dados de Login
 
+> email: tita@exemplo.com
+> senha: Senha123
 
 <div id="howto">
 
@@ -79,12 +87,11 @@ This project is currently in development as a result of a Front-End Challenge (4
 
 ### ⚙️ How to Use It
 
--   Visit the website: https://adopet-tau.vercel.app/
+-   Visit the website: https://adopet-frontend-iota.vercel.app//
 -   To log in the page, use the following data:
 
-    > E-mail: admin@email.com
-    >
-    > Password: 12345aA
+    >email: tita@exemplo.com
+    > senha: Senha123
 
 ### 🦾 About the challenge
 
@@ -107,48 +114,19 @@ The Challenge started at July 4th, 2022.
 
 ---
 
-AdopterController {/adotante}: +17ms
-[Nest] 1248  - 23/01/2024 03:21:33     LOG [RouterExplorer] Mapped {/adotante, POST} route +3ms
-[Nest] 1248  - 23/01/2024 03:21:33     LOG [RouterExplorer] Mapped {/adotante, GET} route +0ms
-[Nest] 1248  - 23/01/2024 03:21:33     LOG [RouterExplorer] Mapped {/adotante/:id, PUT} route +1ms
-[Nest] 1248  - 23/01/2024 03:21:33     LOG [RouterExplorer] Mapped {/adotante/id, DELETE} route +0ms
-
-Developed with 🧡 by [@sucodelarangela 🍊](https://angelacaldas.vercel.app)
+Rotas: Backend em Nest.js
 
 
+ {/adotante}
+ {/adotante/register, POST} 
+ {/adotante, GET} 
+ {/adotante/perfil/:id, GET} 
+ {/adotante/perfil/:id, PATCH} 
+ {/adotante/:id, DELETE} 
+Auth {/adotante}
+ {/mensagem/:id, GET} 
 
-try {
-            const response = await axios.post(baseURL+'/login', { email, password})
-            const token = response.data.access_token;
-            console.log('login auth', { email:email, password:password });
 
-            if (token){
-                localStorage.setItem('token', token);
 
-                const decode = jwt_decode(token);
-                const user = decode(token);
-                setUser(user);
-                navigate('/home');
 
-            }else {
-                console.error("Erro. Verifique suas credenciais");
-            }
-        }catch(error){
-            console.error('Erro ao autenticar', error.message);
-        }
-    
 
-        // // creating a session api
-        // const loggedUser = {
-        //     id: '123',
-        //     email
-        // };
-
-        // // saving user on localStorage
-        // localStorage.setItem('user', JSON.stringify(loggedUser));
-
-        // if (password === '12345aA') {
-        //     setUser(loggedUser);
-        //     navigate('/home');
-        // }
-    };
