@@ -169,7 +169,7 @@ const RegisterForm = () => {
 
 
 
-				<Button type="submit" data-test="submit-button" children="Cadastrar" />
+				<Button data-test="submit-button" type="submit" children="Cadastrar" />
 			</form>
 		</motion.section>
 	);
