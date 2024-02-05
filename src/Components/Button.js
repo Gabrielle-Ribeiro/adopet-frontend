@@ -1,6 +1,6 @@
 const Button = ({ handleClick, children, type }) => {
   return (
-    <button type={type} onClick={handleClick} role='link'>{children}</button>
+    <button data-test="submit-button" type={type} onClick={handleClick} role='link'>{children}</button>
   );
 };
 
