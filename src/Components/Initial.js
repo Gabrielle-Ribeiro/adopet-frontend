@@ -22,9 +22,9 @@ const Home = () => {
       <div className='home__buttons'>
         <Link className='button' to='/home'>Ver pets disponíveis para adoção</Link>
         <div>
-          <a className='initial__link' href="/cadastro">Cadastrar</a>
+          <a className='initial__link' href="/cadastro" data-test="register-button">Cadastrar</a>
           <span style={{ fontSize: 14, padding: '0 1rem', color: '#fff' }}>ou</span>
-          <a className='initial__link' href="/login">Fazer login</a>
+          <a className='initial__link' href="/login" data-test="login-button">Fazer login</a>
         </div>
       </div>
     </motion.section >

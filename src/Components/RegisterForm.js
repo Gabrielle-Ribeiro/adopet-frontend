@@ -94,6 +94,7 @@ const RegisterForm = () => {
 						},
 					})}
 					placeholder="Digite seu nome completo"
+					data-test="input-name"
 				/>
 				{errors.name && <p className="error">{errors.name.message}</p>}
 
@@ -107,6 +108,7 @@ const RegisterForm = () => {
 							/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 					})}
 					placeholder="Escolha seu melhor email"
+					data-test="input-email"
 				/>
 				{errors.email && (
 					<p className="error">
@@ -130,6 +132,7 @@ const RegisterForm = () => {
 							pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/,
 						})}
 						placeholder="Crie uma senha"
+						data-test="input-password"
 					/>
 				</span>
 				{errors.password && (
@@ -157,6 +160,7 @@ const RegisterForm = () => {
 							},
 						})}
 						placeholder="Repita a senha criada acima"
+						data-test="input-confirm-password"
 					/>
 				</span>
 				{errors.confirm_password && (
@@ -165,7 +169,7 @@ const RegisterForm = () => {
 
 
 
-				<Button type="submit" children="Cadastrar" />
+				<Button type="submit" children="Cadastrar" data-test="submit-button" />
 			</form>
 		</motion.section>
 	);
