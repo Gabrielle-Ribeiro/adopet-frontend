@@ -23,6 +23,7 @@ const Message = () => {
   const navigate = useNavigate();
   const { authenticated, user } = useContext(AuthContext)
   const [userMessages, setUserMessages] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     const fetchUserMessages = async () => {
@@ -31,7 +32,8 @@ const Message = () => {
         const response = await client.get(`/mensagem/${user.sub}`);
         
       setUserMessages(response.data.msg)
-      console.log(response.data.msg)}
+      // console.log(response.data.msg)
+    }
       } catch (error) {
         console.error('Erro ao obter mensagens do usuário', error);
         setUserMessages([]);
@@ -57,16 +59,15 @@ const Message = () => {
 
   const onSubmit = async (data) => {
     console.log(data);
-
-
     try {
-      const response = await client.post('/mensagem', data);
+      const response = await client.post(`/mensagem/${user.sub}`, data);
       console.log(response.data);
-      alert('Mensagem enviada!');
+      // alert('Mensagem enviada!');
       navigate('/home');
     } catch (error) {
       console.error('Erro ao enviar mensagem', error);
-      alert('Falha ao enviar mensagem')
+      setErrorMessage('Falha ao enviar mensagem');
+      // alert('Falha ao enviar mensagem')
     }
   };
 
@@ -94,6 +95,7 @@ const Message = () => {
               {errors.msg && <p className="error">{errors.msg.message}</p>}
 
               <Button type='submit' children='Enviar' />
+              {errorMessage && <p className="error">{errorMessage}</p>}
             </form>
 
           {/* Display messages specific to the authenticated user */}
