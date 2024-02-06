@@ -34,12 +34,9 @@ const Header = () => {
             <Link className='button' to="/perfil">Ver Perfil</Link>
             <Button handleClick={handleLogout} children="Logout"></Button>
           </Menu.Items>
-        </Menu>
-        
+        </Menu>       
       );
-      if(location.pathname === '/'){
-        navigate('/home')
-      }
+      
     } else {
       setUser(
         <Menu>
@@ -53,20 +50,29 @@ const Header = () => {
       );
       
     }
-  }, [location, handleLogout, authenticated, navigate]);
+  }, [location, handleLogout, authenticated]);
 
   return (
     <header className='header'>
       <nav>
+        {authenticated} ? (
+          <div>
+          <Link className='header__home' aria-label='Tela inicial' to="/home" ></Link>
+          <Link className='header__message' to="/mensagem" aria-label='Ir para Mensagens'></Link>
+          </div>
+
+        ):(
+        
         <div>
           <img className='header__logo' src="logo-clear.svg" alt="" aria-hidden='true' />
           <Link className='header__home' aria-label='Tela inicial' to="/" ></Link>
           <Link className='header__message' to="/mensagem" aria-label='Ir para Mensagens'></Link>
-        </div>
-        {user}
+        </div>{user}
+      )
       </nav>
     </header>
-  );
+  )
+  
 };
 
 export default Header;
