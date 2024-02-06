@@ -60,7 +60,7 @@ const Message = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await client.post(`/mensagem`, data);
+      const response = await client.post('/mensagem', data);
       console.log(response.data);
       // alert('Mensagem enviada!');
       navigate('/home');

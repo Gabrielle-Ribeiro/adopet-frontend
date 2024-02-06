@@ -126,6 +126,7 @@ Rotas: Backend em Nest.js
 Auth {/adotante}
  {/mensagem/:id, GET} 
 
+/mensagem, POST
 
 
 
