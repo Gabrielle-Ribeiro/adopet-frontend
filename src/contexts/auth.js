@@ -18,6 +18,7 @@ export const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('')
 
     useEffect(() => {
         const recoveredUser = localStorage.getItem('user');
@@ -47,12 +48,13 @@ export const AuthProvider = ({ children }) => {
             // console.log('entrou no if');
 
         }else {
-            alert('Consulte suas credenciais')
-            console.error("Erro. Verifique suas credenciais");
+             console.error("Erro. Verifique suas credenciais");
+            setErrorMessage('Falha no login. Consulte suas credenciais.')
         }
     }catch(error){
-        alert('Falha no Login, consulte suas credenciais')
+        setErrorMessage('Falha no login. Consulte suas credenciais.')
         console.error('Erro ao autenticar', error.message);
+
         throw error
     }
 }

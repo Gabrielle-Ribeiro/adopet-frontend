@@ -1,6 +1,6 @@
 // dependencies
 import { motion } from "framer-motion";
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 
 
@@ -25,6 +25,8 @@ const LoginForm = () => {
 		reValidateMode: "onChange",
 	});
 
+	const [errorMessage, setErrorMessage] = useState('')
+
 	 const  onSubmit = async (data) => {
 		try {
 			console.log('submit', data);
@@ -32,6 +34,7 @@ const LoginForm = () => {
 			// navigate("/home");
 		}catch(error){
 			console.error('Erro Login', error);
+			setErrorMessage('Falha no login. Consulte suas credenciais.')
 		}
 		
 	};
@@ -103,6 +106,8 @@ const LoginForm = () => {
 					Esqueci minha senha
 				</a>
 				<Button type="submit" children="Entrar" />
+				{errorMessage && <p className="error">{errorMessage}</p>}
+
 				<p>Ainda não tem conta?</p>
 				<a href="/cadastro" className="register__newUser">Faça seu cadastro</a>
 			</form>
