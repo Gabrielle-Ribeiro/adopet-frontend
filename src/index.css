@@ -578,6 +578,45 @@ a.card__contact:focus::before {
 
 /* #endregion */
 
+
+.enviadas {
+    width: 34.5rem;
+    padding: 2rem 1rem;
+    margin-bottom: 5.625rem;
+    background: var(--light-grey);
+    border-radius: 0.625rem;
+    margin-bottom: 1rem;
+    
+}
+
+.enviadas p {
+    color: var(--blue); /* Definindo a cor azul */
+    font-weight: 500;
+    font-size: 1.625rem;
+    border: none;
+    margin-bottom: 1rem;
+}
+
+.enviadas ul {
+    list-style: none;
+    padding: 10;
+    background-color: white;
+    width: auto;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.15);
+    
+}
+
+.enviadas li {
+    margin-bottom: 10px;
+    color: black; /* Definindo a cor azul */
+    font-size: 1rem;
+    /* line-height: 1.5rem; */
+}
+
+
+
+
+
 /* #region ----------------- MESSAGE COMPONENT */
 .message form {
     background: var(--light-grey);
@@ -842,23 +881,7 @@ legend {
   }
   */
 
-  .enviadas{
-    width: 34.5rem;
-    padding: 2rem;
-    margin-bottom: 5.625rem;
-        
-    background: var(--light-grey);
-        padding: 2rem 1rem;
-        border-radius: 0.625rem;
-        margin-bottom: 1rem;
-  
-        margin-top: 0.5rem;
-        margin-bottom: 1rem;
-        background-color: var(--white);
 
-       
-  
-  }
 
     .message form {
         width: 34.5rem;
@@ -872,6 +895,7 @@ legend {
         margin: 0 2rem 3.75rem;
         gap: 1rem;
     }
+
     
 
     /*
