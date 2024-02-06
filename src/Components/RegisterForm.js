@@ -47,7 +47,7 @@ const RegisterForm = () => {
 		data.querAdotarPet = watch("querAdotarPet");
 		data.querEncontrarLarPet = watch("querEncontrarLarPet");
 		// console.log(data);
-		navigate("/login");
+		// navigate("/login");
 
 		try {
 			const requestData ={
