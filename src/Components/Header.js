@@ -53,7 +53,7 @@ const Header = () => {
       );
       
     }
-  }, [location, handleLogout, authenticated]);
+  }, [location, handleLogout, authenticated, navigate]);
 
   return (
     <header className='header'>
