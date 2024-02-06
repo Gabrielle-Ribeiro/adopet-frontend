@@ -14,12 +14,21 @@ import { AuthContext } from '../contexts/auth';
 const Header = () => {
   const location = useLocation();
   const [user, setUser] = useState('');
-  // const navigate = useNavigate()
+  const navigate = useNavigate();
   const { authenticated, logout } = useContext(AuthContext);
-
+  
   const handleLogout = useCallback(() => {
     logout();
   }, [logout]);
+
+
+  const handleHomeClick = () => {
+    if (authenticated) {
+      navigate('/home');
+    } else {
+      navigate('/');
+    }
+  };
 
   useEffect(() => {
     if (location.pathname === '/' || location.pathname === '/login' || location.pathname === '/cadastro') {
@@ -56,7 +65,7 @@ const Header = () => {
       <nav>
         <div>
           <img className='header__logo' src="logo-clear.svg" alt="" aria-hidden='true' />
-          <Link className='header__home' aria-label='Tela inicial' to="/" ></Link>
+          <Link className='header__home' aria-label='Tela inicial' to="/" onClick={handleHomeClick}></Link>
           <Link className='header__message' to="/mensagem" aria-label='Ir para Mensagens'></Link>
         </div>
         {user}
