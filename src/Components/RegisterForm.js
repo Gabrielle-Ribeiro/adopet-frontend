@@ -56,7 +56,7 @@ const RegisterForm = () => {
 			}
 				const response = await client.post(`/adotante/register`, {nome: requestData.nome, email: requestData.email, password: requestData.password })
 		// Handle the registration response
-		console.log(response.data);
+		// console.log(response.data);
 		// alert('Cadastro feito com sucesso!')
 		navigate('/login');
 					
