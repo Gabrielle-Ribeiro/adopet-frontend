@@ -22,6 +22,8 @@ const RegisterForm = () => {
 		passwordRetry: false,
 	});
 
+	const [errorMessage, setErrorMessage] = useState('')
+
 	const handlePasswordType = (passwordInput) => {
 		setVisiblePassword({
 			...visiblePassword,
@@ -44,7 +46,7 @@ const RegisterForm = () => {
 		// Include checkbox values in submitted data
 		data.querAdotarPet = watch("querAdotarPet");
 		data.querEncontrarLarPet = watch("querEncontrarLarPet");
-		console.log(data);
+		// console.log(data);
 		navigate("/login");
 
 		try {
@@ -55,11 +57,11 @@ const RegisterForm = () => {
 				const response = await client.post(`/adotante/register`, {nome: requestData.nome, email: requestData.email, password: requestData.password })
 		// Handle the registration response
 		console.log(response.data);
-		alert('Cadastro feito com sucesso!')
+		// alert('Cadastro feito com sucesso!')
 		navigate('/login');
 					
 		} catch (error) {
-		alert('Falha no Cadastro!');
+		setErrorMessage("Falha ao cadastrar!")
 		console.error(error);
 		// 
 		};
@@ -167,9 +169,8 @@ const RegisterForm = () => {
 					<p className="error">{errors.confirm_password.message}</p>
 				)}
 
-
-
 				<Button type="submit" children="Cadastrar"/>
+				{errorMessage && <p className="error">{errorMessage}</p>}
 			</form>
 		</motion.section>
 	);
