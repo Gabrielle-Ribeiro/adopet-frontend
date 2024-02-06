@@ -14,7 +14,7 @@ import { AuthContext } from '../contexts/auth';
 const Header = () => {
   const location = useLocation();
   const [user, setUser] = useState('');
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const { authenticated, logout } = useContext(AuthContext);
 
   const handleLogout = useCallback(() => {
@@ -47,9 +47,9 @@ const Header = () => {
           </Menu.Items>
         </Menu>
       );
-      navigate('/home')
+      
     }
-  }, [location, handleLogout, authenticated, navigate]);
+  }, [location, handleLogout, authenticated]);
 
   return (
     <header className='header'>
