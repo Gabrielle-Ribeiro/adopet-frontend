@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
 // assets
 import loggedUser from '../assets/logged-user.png';
 
@@ -29,7 +30,10 @@ const Message = () => {
     const fetchUserMessages = async () => {
       try {
         if(authenticated){
-        const response = await client.get(`/mensagem/${user.sub}`);
+          const token = localStorage.getItem('token')
+          const decodedToken = jwtDecode(token);
+          client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        const response = await client.get(`/mensagem/${decodedToken.sub}`);
         
       setUserMessages(response.data.msg)
       // console.log(response.data.msg)
@@ -60,10 +64,22 @@ const Message = () => {
   const onSubmit = async (data) => {
     console.log(data);
     try {
-      const response = await client.post('/mensagem', data);
+      if(authenticated){
+        const token = localStorage.getItem('token')
+          const decodedToken = jwtDecode(token);
+          client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+          const postData = {
+            ...data,
+            // token: decodedToken.sub 
+          };
+    
+
+
+      const response = await client.post('/mensagem', postData);
       console.log(response.data);
       // alert('Mensagem enviada!');
-      navigate('/home');
+      navigate('/home');}
     } catch (error) {
       console.error('Erro ao enviar mensagem', error);
       setErrorMessage('Falha ao enviar mensagem');
