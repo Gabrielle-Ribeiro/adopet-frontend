@@ -1,6 +1,6 @@
 // dependencies
 import { useCallback, useContext, useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate} from 'react-router-dom';
 import { Menu } from '@headlessui/react';
 
 // assets
@@ -14,6 +14,7 @@ import { AuthContext } from '../contexts/auth';
 const Header = () => {
   const location = useLocation();
   const [user, setUser] = useState('');
+  const navigate = useNavigate()
   const { authenticated, logout } = useContext(AuthContext);
 
   const handleLogout = useCallback(() => {
@@ -46,15 +47,16 @@ const Header = () => {
           </Menu.Items>
         </Menu>
       );
+      navigate('/home')
     }
-  }, [location, handleLogout, authenticated]);
+  }, [location, handleLogout, authenticated, navigate]);
 
   return (
     <header className='header'>
       <nav>
         <div>
           <img className='header__logo' src="logo-clear.svg" alt="" aria-hidden='true' />
-          <Link className='header__home' aria-label='Tela inicial' to="/home" ></Link>
+          <Link className='header__home' aria-label='Tela inicial' to="/" ></Link>
           <Link className='header__message' to="/mensagem" aria-label='Ir para Mensagens'></Link>
         </div>
         {user}
