@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 import { useForm } from "react-hook-form";
 
 // assets
-// import loggedUser from '../assets/logged-user.png';
+import loggedUser from '../assets/logged-user.png';
 
 import { useContext } from 'react';
 import { AuthContext } from '../contexts/auth';
@@ -17,7 +17,6 @@ import { useEffect } from 'react';
 
 
 import client from '../axios.config'
-
 
 
 // const baseURL = 'http://localhost:3000/adotante'
@@ -36,6 +35,8 @@ const Profile = () => {
         reValidateMode: 'onChange'
     });
 
+    const [errorMessage, setErrorMessage] = useState('')
+
     useEffect(() => {
         const fetchProfileData = async () => {
           try {
@@ -44,12 +45,14 @@ const Profile = () => {
                 // Faz uma solicitação GET para obter as informações do perfil do servidor
                 const response = await client.get(`/adotante/perfil/${user.sub}`);
                 setProfileData(prevData => ({ ...prevData, ...response.data }));
-                console.log(response.data);
+                // console.log(response.data);
             }
             // setProfileImage(response.data.fotoPerfil);
           } catch (error) {
             console.error('Erro ao obter informações do perfil', error);
-            alert('Problemas no Login')
+            setErrorMessage("Erro ao obter informações do perfil");
+            // alert('Problemas no Login')
+
             // Lida com o erro de acordo com a lógica do seu aplicativo
           }
         };
@@ -63,11 +66,12 @@ const Profile = () => {
             const response = await client.patch(`/adotante/perfil/${user.sub}`, data);
             // setProfileImage(response.data.fotoPerfil)
             console.log(response.data);
-            alert('Atualização concluída!');
+            // alert('Atualização concluída!');
             navigate('/home')
         } catch (error) {
             console.error('Erro ao atualizar perfil', error);
-            alert('Erro: perfil não atualizado');
+            errorMessage()
+            // alert('Erro: perfil não atualizado');
         }
     }
 
@@ -84,8 +88,8 @@ const Profile = () => {
 
                                 <legend>Perfil</legend>
                                 <label htmlFor='user-pic'>Foto</label>
-                                <input type="image" id='fotoPerfil' src={profileImage} alt="Usuário logado" />
-                                <a href="#">Clique na foto para editar</a>
+                                <input type="image" id='fotoPerfil' src={loggedUser} alt="Usuário logado"/>
+                                {/* <a href="#">Clique na foto para editar</a> */}
 
                               
                                 <label htmlFor="name">Nome</label>
@@ -114,10 +118,12 @@ const Profile = () => {
 
                                 {errors.sobre && <p className="error">{errors.sobre.message}</p>}
                             
-                                <Button type='submit' children='Salvar' />
+                                <Button type='submit' children='Salvar' /> {errorMessage && <p className="error">{errorMessage}</p>}
+                                
                             </form>
                         </>
                     ) : null}
+                    
             </motion.section>
         );
     };
