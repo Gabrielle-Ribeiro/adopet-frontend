@@ -54,7 +54,7 @@ const Header = () => {
       <nav>
         <div>
           <img className='header__logo' src="logo-clear.svg" alt="" aria-hidden='true' />
-          <Link className='header__home' aria-label='Tela inicial' to="/" ></Link>
+          <Link className='header__home' aria-label='Tela inicial' to="/home" ></Link>
           <Link className='header__message' to="/mensagem" aria-label='Ir para Mensagens'></Link>
         </div>
         {user}
