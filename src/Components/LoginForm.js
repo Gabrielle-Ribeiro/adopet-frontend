@@ -71,7 +71,7 @@ const LoginForm = () => {
 						pattern:
 							/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 					})}
-					placeholder="Insira seu email"
+					placeholder="Insira seu email" data-test="input-loginEmail"
 				/>
 				{errors.email && (
 					<p className="error">
@@ -92,7 +92,7 @@ const LoginForm = () => {
 							required: "Insira sua senha",
 							pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,15}$/,
 						})}
-						placeholder="Insira sua senha"
+						placeholder="Insira sua senha" data-test="input-loginPassword"
 					/>
 				</span>
 				{errors.password && (
@@ -109,7 +109,7 @@ const LoginForm = () => {
 				{errorMessage && <p className="error">{errorMessage}</p>}
 
 				<p>Ainda não tem conta?</p>
-				<a href="/cadastro" className="register__newUser">Faça seu cadastro</a>
+				<a href="/cadastro" className="register__newUser" data-test="link-cadastro">Faça seu cadastro</a>
 			</form>
 		</motion.section>
 	);
