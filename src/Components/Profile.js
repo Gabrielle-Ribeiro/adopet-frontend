@@ -41,7 +41,7 @@ const Profile = () => {
         const fetchProfileData = async () => {
           try {
             if(authenticated){
-                console.log(user.sub);
+                // console.log(user.sub);
                 // Faz uma solicitação GET para obter as informações do perfil do servidor
                 const response = await client.get(`/adotante/perfil/${user.sub}`);
                 setProfileData(prevData => ({ ...prevData, ...response.data }));

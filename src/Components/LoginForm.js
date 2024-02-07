@@ -29,7 +29,7 @@ const LoginForm = () => {
 
 	 const  onSubmit = async (data) => {
 		try {
-			console.log('submit', data);
+			// console.log('submit', data);
 			await login(data.email,data.password);
 			// navigate("/home");
 		}catch(error){

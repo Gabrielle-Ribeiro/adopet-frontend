@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
    
 
     const logout = () => {
-        console.log('logout');
+        // console.log('logout');
         localStorage.removeItem('user');
         setUser(null);
         navigate('/');
