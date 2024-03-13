@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // dependencies
 import { motion } from 'framer-motion';
 
@@ -6,6 +7,13 @@ import { pets } from '../data/data.js';
 
 // components
 import CardPet from './CardPet.js';
+=======
+import { motion } from 'framer-motion';
+import CardPet from './CardPet.js';
+import { pets } from '../data/data.js';
+>>>>>>> 4bd3f83ad926b0dbc195ab09bf43e40ac47a64d5
+
+
 
 const Home = () => {
   return (
